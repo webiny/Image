@@ -13,6 +13,6 @@ Image:
     # just ommit this definition in your config file.
     Bridge: \Webiny\Component\Image\Bridge\Imagine\Imagine
     # Entries under ClassLoader are automatically registered
-    # with ClassLoader.
+    # with ClassLoader. You don't need this part if you are using Composer autoload.
     ClassLoader:
         Imagine: /var/Vendors/Imagine/lib/Imagine
