@@ -8,5 +8,3 @@ Image:
     Library: gd
     Quality: 90
     Bridge: \Webiny\Component\Image\Bridge\Imagine\Imagine
-    ClassLoader:
-        Imagine: /var/www/projects/webiny/Vendors/Imagine/lib/Imagine
