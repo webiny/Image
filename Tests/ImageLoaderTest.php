@@ -48,12 +48,14 @@ class ImageLoaderTest extends \PHPUnit_Framework_TestCase
     public function testOpen()
     {
         // build LocalFile mock
-        $file = $this->getMockBuilder('\Webiny\Component\Storage\File\LocalFile')->disableOriginalConstructor()
+        $file = $this->getMockBuilder('\Webiny\Component\Storage\File\LocalFile')
+                     ->disableOriginalConstructor()
                      ->setMethods([
                                       'getAbsolutePath',
                                       'getKey'
                                   ]
-            )->getMock();
+                     )
+                     ->getMock();
 
         // getAbsolutePath mock
         $file->expects($this->once())->method('getAbsolutePath')->will($this->returnValue(__DIR__ . '/image.gif'));
