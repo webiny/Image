@@ -64,7 +64,8 @@ class Imagine implements ImageLoaderInterface
                 break;
 
             default:
-                throw new ImagineException('Unsupported image library "' . $library . '". Cannot create Imagine instance.');
+                throw new ImagineException('Unsupported image library "' . $library . '". Cannot create Imagine instance.'
+                );
                 break;
         }
     }

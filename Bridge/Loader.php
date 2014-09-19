@@ -45,7 +45,8 @@ class Loader
         $instance = self::factory($lib, '\Webiny\Component\Image\Bridge\ImageLoaderInterface', [$config]);
 
         if (!self::isInstanceOf($instance, '\Webiny\Component\Image\Bridge\ImageLoaderInterface')) {
-            throw new ImageException('The message library must implement "\Webiny\Component\Image\Bridge\ImageLoaderInterface".');
+            throw new ImageException('The message library must implement "\Webiny\Component\Image\Bridge\ImageLoaderInterface".'
+            );
         }
 
         return $instance;
