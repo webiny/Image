@@ -7,7 +7,7 @@
 
 namespace Webiny\Component\Image\Bridge;
 
-use Webiny\Component\Storage\File\LocalFile;
+use Webiny\Component\Storage\File\File;
 
 /**
  * ImageLoader interface.
@@ -29,16 +29,16 @@ interface ImageLoaderInterface
      *
      * @return ImageInterface
      */
-    function create($width, $height, $bgColor = null);
+    public function create($width, $height, $bgColor = null);
 
     /**
      * Creates a new ImageInterface instance from the given image at the provided path.
      *
-     * @param LocalFile $image Path to an image on the disk.
+     * @param File $image Path to an image on the disk.
      *
      * @return ImageInterface
      */
-    function open(LocalFile $image);
+    public function open(File $image);
 
     /**
      * Create a new ImageInterface instance form the given binary string.
@@ -47,7 +47,7 @@ interface ImageLoaderInterface
      *
      * @return mixed
      */
-    function load($string);
+    public function load($string);
 
     /**
      * Create a new ImageInterface instance from the given resource.
@@ -56,5 +56,5 @@ interface ImageLoaderInterface
      *
      * @return ImageInterface
      */
-    function resource($resource);
+    public function resource($resource);
 }

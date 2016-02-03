@@ -10,7 +10,7 @@ namespace Webiny\Component\Image;
 use Webiny\Component\Image\Bridge\ImageLoaderInterface;
 use Webiny\Component\Image\Bridge\Loader;
 use Webiny\Component\StdLib\StdLibTrait;
-use Webiny\Component\Storage\File\LocalFile;
+use Webiny\Component\Storage\File\File;
 
 /**
  * Use this class to create an Image instance.
@@ -29,20 +29,20 @@ class ImageLoader
     /**
      * @var null|ImageLoaderInterface
      */
-    private static $_loader = null;
+    private static $loader = null;
 
     /**
      * Returns an instance of ImageLoaderInterface.
      *
      * @return null|ImageLoaderInterface
      */
-    private static function _getLoader()
+    private static function getLoader()
     {
-        if (self::isNull(self::$_loader)) {
-            self::$_loader = Loader::getImageLoader(Image::getConfig());
+        if (self::isNull(self::$loader)) {
+            self::$loader = Loader::getImageLoader(Image::getConfig());
         }
 
-        return self::$_loader;
+        return self::$loader;
     }
 
     /**
@@ -59,7 +59,7 @@ class ImageLoader
      */
     public static function create($width, $height, $bgColor = null)
     {
-        return self::_getLoader()->create($width, $height, $bgColor);
+        return self::getLoader()->create($width, $height, $bgColor);
     }
 
     /**
@@ -71,7 +71,7 @@ class ImageLoader
      */
     public static function load($string)
     {
-        return self::_getLoader()->load($string);
+        return self::getLoader()->load($string);
     }
 
     /**
@@ -83,19 +83,19 @@ class ImageLoader
      */
     public static function resource($resource)
     {
-        return self::_getLoader()->resource($resource);
+        return self::getLoader()->resource($resource);
     }
 
     /**
      * Creates a new ImageInterface instance from the given image at the provided path.
      *
-     * @param LocalFile $image Path to an image on the disk.
+     * @param File $image Path to an image on the disk.
      *
      * @return ImageInterface
      */
-    public static function open(LocalFile $image)
+    public static function open(File $image)
     {
-        $img = self::_getLoader()->open($image);
+        $img = self::getLoader()->open($image);
         $img->setDestination($image);
 
         // extract the format
@@ -103,7 +103,7 @@ class ImageLoader
         $img->setFormat($format);
 
         // fix image orientation (iPhone/Android issue)
-        self::_fixImageOrientation($image, $img);
+        self::fixImageOrientation($image, $img);
 
         return $img;
     }
@@ -113,10 +113,10 @@ class ImageLoader
      * This method fixes that.
      * Method is called automatically on the `open` method.
      *
-     * @param LocalFile      $imageFile
+     * @param File      $imageFile
      * @param ImageInterface $image
      */
-    private static function _fixImageOrientation(LocalFile $imageFile, ImageInterface $image)
+    private static function fixImageOrientation(File $imageFile, ImageInterface $image)
     {
         $format = $image->getFormat();
 
